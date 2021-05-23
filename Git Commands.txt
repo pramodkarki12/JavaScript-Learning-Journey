@@ -1,0 +1,114 @@
+1. git status  => to check the status of your file, either it is commited, or not.
+
+2. git init    => to initialize the file into the git repository.
+
+3. git add --a => to add the all the files in staging area where you can commit a file into git directories.
+
+4. git add <filename> => to add the pointed files in staging area.
+
+5. git commit -m "message" => to make the file commit into git directories.
+
+6. git log     => to view the detailed info of files, such as, author(user, email), date of commit and 
+		  commit with checksum id(unique).
+
+7. rm -rf .git  => remove all the files and its content from the git repository of their respective folders.
+
+8. cd  => change the directory
+
+9. pwd  => to view the current directory path
+
+10. ls -l => to list all the files inside the directory
+
+11. git clone <link>  => to clone or download the git repository of following link in computer.
+
+12. touch .gitignore  => 
+	i. creating a .gitignore file to ignore some certain files(such as, error.log),even though,
+           it get changes and we do not need to stage and commit these files again and again.
+       ii. Inside the .gitignore file, we need to initialize the file name with its extension to ignore the 
+	   file that you wanted(such as, error.log).
+      iii. In case, there are many .log file or other files that you wanted to ignore, in that scenario, open 
+	   the .gitignore file and type the command i.e., *.log 
+	   By doing so, it ignore all the .log files that you want to ignored.  
+       iv. Suppose, you have .log or other files inside the directory or folders that you do not want to track or 
+	   ignore it, then simply, you need to type the command ( i.e., dir/ or <folderName>/ ) 
+	   inside the .gitignore file.
+
+ (Note: Typing those command inside the .gitignore file ignore all the .log, dir folder or other file.
+	Suppose, there is folder (dir/ folder) inside the another main folder and you want to untrack or ignore 
+        that folder which is inside the main folder and remain other dir folder as that of same directory name,
+        then you can type the command (/dir/ or can give full path to ignore that file) inside the .gitignore, 
+	which ignore only those dir/ folder which is inside the main folder or directory. )
+
+13. git diff => to compare the staging area with the working area 
+		(It tells us that which line has been removed and which line has been added.)
+
+14. git diff --staged  => to compare the new staging area or commit with the previous staging area.
+
+15. git commit -a -m <message>	=> to skip the staging area.
+ (Note: If your file is modified and want to skip the staging area and directly want to commit these file, 
+	then it works.
+	However, if your file is untracked you just need to add it into staging area and commit it, these means
+	it doesn't work in it.)
+
+16. git rm <fileName>  => to remove the file from git repository
+ (Note: If you delete the file with the above command, then it deleted and also it added your file 
+	into staging area and then you can commit.
+	However, if you manually delete the file then you first need to add it into staging area and commit it.)
+		
+17. git mv <Previous fileName> <NewRenamed fileName>  => to move or rename the file 
+ (Note: If you rename/move the file with the above command, then it rename/move and also it added your file 
+	into staging area and then you can commit.
+
+18. git rm --cached <filename> => to untrack the file
+ (Note: If you added some file that  you have been tracking previously and now you don't want to track and added it 
+	into .gitignore. After so, it you modified that file, it again shows the file that is modified, however, 
+	it does not need to display. 
+	Here, what just happened is that you have been tracking that file previously, so that you just need to tell 
+	that from now I don't want to track these files or explicitly untracked itby using above command and 
+	then you can commit it.
+
+
+19. git log -p => to view all the commit along with the author, diff, changes made and so on.
+
+20. git log -p -(3 or any number) => to view the 3 commit of each author who had changed the files.
+
+21. git log --stat => to view the short details of changed files with the deletion and addition files info.
+
+22. git log --pretty=oneline  => to view all the commit into one line or one page.
+
+23. git log --pretty=short  => to view the short details of each commit with its author only.
+
+24. git log --pretty=long  => to view the long details of each commit with both the author (who first introduced) 
+			      and commit username (who made changes).
+
+25. git log --since=2.days => to view the commit details since last two days.
+
+26. git log --since=2.months => to view the commit details since last two months. 
+
+26. git log --since=2.years => to view the commit details since last two years.
+
+27. git restore --stage <fileName.txt> => to unstage the files from the staging area.
+
+28. git checkout -- <fileName> => to undo the content inside the file by comparing the new commit with the last committed.
+
+29. git checkout -f => to undo all the files at once.
+  (Note: If have made certain changes to multiple files and you want to restore it back, then this command will 
+	 be mandatory, however, it might be dangerous, if you are working with some important coding and then you
+	 use it, knowingly or, unknowingly it delete all your new created coding or lines.
+
+30. (git config --global alias.s status) (git config --global alias.unstage 'restore --staged --') => to set the alias to any command.
+	(As in the command, I've set the status as s so that's why whenever I want to write any git status, you can simply 
+	write git s. It works perfectly. And Second command was for the unstaging the file.)
+
+
+******** Git Branching and Merging ***************
+31. git checkout -b testBranch => to create a new branch (You can give any name to your branch).
+32. git checkout master / testBranch => to switch between your master branch and your own created branch.
+33. git merge testBranch = to merge the testBranch in the master branch.
+(Some other commands in Git Branching :)
+  i. git branch -v => display the last committed message of all the branch
+ ii. git branch --merged => displays the branch that is already merged.
+iii. git branch --no-merged => displays the branch that has not been merged.
+
+34. git branch -d <Branch_Name> => to delete the branch (Before doing this, you first need to merge into the master or other 							branch before deleting it.)
+35. git branch -D <Branch_Name> => delete the branch even though if it is not merged.
