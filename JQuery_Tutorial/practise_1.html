@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <p class="intro">This is the first paragraph.</p>
+      <p class="intro">This is the second paragraph.</p>
+      <p class="intro1">This is the third paragraph.</p>
+    </div>
+
+    <div class="paragraph">
+      <ul>
+        <li>Home</li>
+        <li>Contact</li>
+        <li>About</li>
+        <li>Search</li>
+      </ul>
+    </div>
+
+    <div class="container-space">
+      <div class="mouseenter">
+        <h1>mouseenter()</h1>
+        <p>
+          The mouseenter() method attaches an event handler function to an HTML
+          element.<br />
+          The function is executed when the mouse pointer enters the HTML element:
+        </p>
+      </div>
+
+      <h1>mousedown()</h1>
+      <p>
+        The mousedown() method attaches an event handler function to an HTML element.<br>
+
+        The function is executed, when the left, middle or right mouse button is pressed down, while the mouse is over the HTML element:
+      </p>
+
+      <h1>mouseup()</h1>
+      <p>
+        The mouseup() method attaches an event handler function to an HTML element.<br />
+        The function is executed, when the left, middle or right mouse button is released, while the mouse is over the HTML element:
+      </p>
+
+    </div>
+
+    <button id="btn">Click Me</button>
+  </body>
+  <script src="jquery-3.5.1.min.js"></script>
+  <script>
+    $(function () {
+      // $('#btn').click(function() {
+      //     $('p.intro').hide();
+      // });
+
+      // $('#btn').click(function() {
+      //     $('p:first').hide();
+      // });
+      // $('#btn').dblclick(function() {
+      //     $('p').show();
+      // })''
+
+      $("#btn").click(function () {
+        $("ul").hide();
+      });
+      $("#btn").dblclick(function () {
+        $("ul").show();
+      });
+
+      $('.mouseenter').mouseenter(function() {
+        $('this').style.background-color.red
+              })
+    });
+
+    
+  </script>
+</html>

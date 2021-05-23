@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Tutorial</title>
+
+    <style>
+        .addCSSClass {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button>Submit</button>
+
+    <button id="hide">Show/Hide</button>
+    <div class="container" style="background-color: aqua;">
+        <p>This is the hide and show page.</p>
+    </div>
+
+    <input type="text" id="txt">
+    <span id="focusId">Welcome</span>
+    <span id="blurId">Take care</span>
+
+    <p>This is the paragraph section where we will perform the multiple events in a single paragraph.</p> -->
+
+
+    <button>Add New Link</button>
+    <input type="text" id="txt">
+    <ol>
+        <li>Home</li>
+        <li>About</li>
+    </ol>
+
+    <div id="container">
+        <h2>This is the heading</h2>
+
+        <p>
+            This is the first paragraph.
+        </p>
+
+        <p>
+            This is the second paragraph.
+        </p>
+    </div>
+    <button>Add CSS</button>
+</body>
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+
+    // $(document).ready(function() {
+    //     $('button').click(function() {
+    //         alert("This is my jquery page.")
+    //     });
+
+    
+    // $(document).ready(function() {
+    //     $('#hide').click(function() {
+    //         $('.container').toggle(1000);
+    //     });
+    // });
+
+
+    // $(document).ready(function() {
+    //     $('span').hide();
+    //     $('input').focus(function() {
+    //     //    msg = document.getElementById('txt')
+    //     //    console.log('The words are : ' + msg.value);
+    //     //    alert('This is Keyboard Pressed.');
+
+    //         $('#focusId').show().fadeOut(3000);
+    //     });
+
+    //     $('input').blur(function() {
+    //         $('#blurId').show().fadeOut(3000);
+    //     });
+    // });
+
+
+    // $('document').ready(function() {
+    //     $('p').on({
+    //         mouseenter: function() {
+    //             $(this).css('backgroundColor', 'red');
+    //         }, 
+    //         mouseleave : function() {
+    //             $(this).css('backgroundColor', 'yellow');
+    //         },
+    //         click : function() {
+    //             alert('This is the way to handle the multiple events.');
+    //         }
+    //     });
+    // });
+
+    const links = document.getElementById('txt').value;
+    $('document').ready(function() {
+        $('button').click(function() {
+            $('ol').append('<li>last</li>');
+            $('ol').prepend('<li>First</li>');
+        });
+    });
+    
+    
+</script>
+
+<script>
+    $('document').ready(function() {
+        $('button').click(function() {
+            $('#container').addClass('addCSSClass');
+        });
+    });
+</script>
+</html>
