@@ -1,0 +1,94 @@
+@keyframes translating {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(300px, 0);
+  }
+  50% {
+    transform: translate(300px, 140px);
+  }
+  75% {
+    transform: translate(0, 140px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.transform {
+  background-color: turquoise;
+  width: fit-content;
+  line-height: 1;
+  padding: 10px 20px;
+  font-size: 16px;
+  /* animation: translating 4s linear infinite; */
+}
+
+.rotate {
+  background-color: antiquewhite;
+  width: fit-content;
+  line-height: 1;
+  padding: 20px 30px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  /* animation: rotating 4s linear infinite; */
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.scale {
+  background-color: cyan;
+  width: fit-content;
+  line-height: 1;
+  padding: 20px 30px;
+  align-items: center;
+  justify-content: center;
+  /* animation: scaling 10s steps(1) 0s infinite; */
+}
+
+@keyframes scaling {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(2);
+  }
+  40% {
+    transform: scale(0.5);
+  }
+  60% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(-1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.skew {
+  background-color: cyan;
+  width: fit-content;
+  line-height: 1;
+  padding: 20px 30px;
+  align-items: center;
+  justify-content: center;
+  /* animation: skewing 10s steps(1) 0s infinite; */
+}
+
+@keyframes skewing {
+  0%  { transform: skew(0deg);}
+  20% { transform: skew(10deg);}
+  40% { transform: skew(45deg);}
+  60% { transform: skew(90deg);}
+  80% { transform: skew(120deg);}
+  100%{ transform: skew(0deg);}
+}

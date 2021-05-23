@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating Editable Div</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20px;
+    }
+    .container {
+      margin: 10px;
+      text-align: center;
+      padding-top: 0px;
+    }
+    .btn-container {
+      text-align: center;
+    }
+    button {
+      margin-top: 12px;
+      width: 16vh;
+      height: 5vh;
+      background-color: rgb(12, 216, 216);
+      border: none;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <p class="btn-txt" style="text-align: center; font-size: 24px;">
+        Do you want to more text?
+      </p>
+      <div class="container-form" style="margin-top: 10px;">
+        <input type="text" style="width: 50vh; height: 20vh;" id="editTxt">
+    </div>
+      <div class="btn-container">
+        <button type="submit" class="btn-order">Add</button>
+      </div>
+      <div class="display"></div>
+    </div>
+  </body>
+  <script>
+    const btn = document.querySelector(".btn-order");
+    btn.addEventListener("click", function(){
+      let txtValue = document.querySelector('#editTxt');
+      console.log(txtValue.value);
+    });
+  </script>
+</html>
