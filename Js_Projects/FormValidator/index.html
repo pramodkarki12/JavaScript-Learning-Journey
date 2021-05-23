@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Form Validation</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <h1>Create Account</h1>
+      </div>
+
+      <form id="form" class="form">
+        <div class="form__control">
+          <label>Username</label>
+          <input id="username" type="text" placeholder="Enter UserName" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error Message</small>
+        </div>
+
+        <div class="form__control">
+          <label>Email</label>
+          <input id="email" type="email" placeholder="Enter Your Email Address" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error Message</small>
+        </div>
+
+        <div class="form__control">
+          <label>Password</label>
+          <input id="pass" type="password" placeholder="Enter Password" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error Message</small>
+        </div>
+
+        <div class="form__control">
+          <label>Confirm Password</label>
+          <input id="conf__Pass" type="password" placeholder="Confirm Your Password" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error Message</small>
+        </div>
+
+        <button>Submit</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

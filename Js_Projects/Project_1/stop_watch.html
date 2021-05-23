@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Roboto;
+            font-weight: 300;
+            background: linear-gradient(to left, #607d8b, #d459cb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wrap {
+            display: inline-block;
+            min-width: 360px;
+            min-height: 400px;
+            padding: 50px 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px #0000004a;
+            text-align: center;
+        }
+
+        #timer {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            line-height: 250px;
+            border-radius: 50%;
+            font-size: 40px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+
+        p{
+            font-weight: 400;
+            color: gray;
+            padding: 30px 0;
+        }
+
+        .option a{
+            display: inline-block;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        #play, #reset {
+            width: 55px;
+            height: 55px;
+            line-height: 55px;
+            border-radius: 50px;
+            color: #fff;
+            background: linear-gradient(45deg, #ff88fb, #ff00ec);
+            box-shadow: 0 8px 25px #bf5fc045, 0 8px 25px #ff00ec50;
+            transition: all ease 0.1s;
+        }
+
+        #stop {
+            padding: 15px 20px;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 400;
+            background: linear-gradient(45deg, #607d8b, #ff00ec);
+            box-shadow: 0 8px 25px #bf5fc045, 0 8px 25px #ff00ec50;
+            transition: all ease 0.1s;
+        }
+
+        #play:active, #reset:active, #stop:active {
+            transform: scale(0.95);
+        }
+
+        #stop .fa {
+            margin-right: 4px;
+        }
+        .fa-play {
+            padding-left: 4px;
+        }
+
+        .pause .fa-play,
+        .fa-pause {
+            display: none;
+        }
+
+        .pause .fa-pause {
+            display: inline-block;
+        }
+
+        /*
+        Circle Animation
+        */
+        #timer svg{
+            position: absolute;
+            left: 0;
+        }
+
+        #animateCircle.addAnimation {
+            stroke-dasharray: 770;
+            stroke-dashoffset:  -770;
+            animation: animateCircle 60s linear infinite;
+            animation-play-state: paused;
+            /* default animation is paused. */
+        }
+
+        @keyframes animateCircle {
+            from {
+                stroke-dashoffset: 0;
+            }
+
+            .defaultCircle {
+                opacity: .3;
+            }
+        }
+
+        .defaultCircle {
+            opacity: .3;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="timer">
+
+            <svg width="260" height="260">
+                <circle class="defaultCircle" cx="125" cy="125" r="120" stroke="#ff88fb" stroke-width="10" fill="none" stoke-linecap="round" />
+            </svg>
+
+            <svg width="260" height="260">
+                <circle id="animateCircle" cx="125" cy="125" r="120" stroke="#d459cb" stroke-width="10" fill="none" stoke-linecap="round" />
+            </svg>
+
+            <span id="hour">00</span>
+            <span id="minute">00</span>
+            <span id="seconds">00</span>
+            <span id="millisecond">00</span>
+        </div>
+        <p>Your time starts now</p>
+        <div class="option">
+            <a href="javascript:void(0)" id="play" onclick="playFunc();"><i class="fa fa-play"></i><i class="fa fa-pause"></i></a>
+            <a href="javascript:void(0)" id="stop" onclick="stopFunc();"><i class="fa fa-stop"> Stop</i></a>
+            <a href="javascript:void(0)" id="reset" onclick="resetFunc();"><i class="fa fa-undo"></i></a>
+        </div>
+    </div>
+    
+</body>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+    var base;
+    var playPause = 0;
+
+    function playFunc() {
+        playPause = playPause + 1;
+        if (playPause === 1) {
+            play();
+            document.getElementById("play").classList.add("pause");
+            $("#animateCircle").addClass("addAnimation");
+            $("#animateCircle.addAnimation").css("animation-play-state", "running");
+        }
+        else if (playPause === 2) {
+            document.getElementById("play").classList.remove("pause");
+            $("#animateCircle").css("animation-play-state", "paused");
+            playPause = 0;
+            stop();
+        }
+    }
+
+    function play() {
+        base = setInterval(timer, 10); //millisecond
+    }
+    
+    function stop() {
+        clearInterval(base);
+    }
+
+    var millisecond = 0;
+    var second = 0;
+    var minute = 0;
+    var hour = 0;
+
+    // Return Value
+    var millisecondVal = 0;
+    var secondVal = 0;
+    var minuteVal = 0
+    var hourVal = 0;
+
+    function timer() {
+        millisecondVal = updateTime(millisecond);
+        secondVal = updateTime(second);
+        minuteVal = updateTime(minute);
+        hourVal = updateTime(hour);
+
+        millisecond = ++millisecond;
+
+        if (millisecond === 100) {
+            millisecond = 0;
+            second = ++second;
+        }
+
+        if (second == 60) {
+            minute = ++minute;
+            second = 0;
+        }
+
+        if (minute == 60) {
+            minute = 0;
+            hour = ++hour;
+        }
+
+        $("#millisecond").text(millisecondVal);
+        $("#seconds").text(secondVal);
+        $("#minute").text(minuteVal);
+        $("#hour").text(hourVal);
+    }
+
+    /*
+    Update
+    time every second
+    millisecond
+    */
+    function updateTime(i) {
+        if ( i < 10) {
+            i = "0" + i
+        }
+        return i;
+    }
+
+    function resetFunc() {
+        millisecond = 0;
+        second = 0;
+        minute = 0;
+        hour = 0;
+
+        $("#millisecond").text("00");
+        $("#seconds").text("00");
+        $("#minute").text("00");
+        $("#hour").text("00");
+
+        if (!$('#play').hasClass("pause")) {
+            $("#animateCircle").removeClass("addAnimation");
+        }
+        else {
+            $("#animateCircle").removeClass("addAnimation");
+            setTimeout(function() {
+                $("#animateCircle").addClass("addAnimation");
+            }, 10);
+        }
+    }
+
+    function stopFunc() {
+        clearInterval(base);
+        resetFunc();
+
+        if ($('#play').hasClass("pause")) {
+            $("#animateCircle").removeClass("addAnimation");
+            playFunc();
+        }
+    }
+
+</script>
+</html>

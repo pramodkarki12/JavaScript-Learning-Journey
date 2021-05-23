@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        margin: auto;
+        padding: 10px;
+        margin-top: 50vh;
+        width: 40%;
+        text-align: center;
+        border: 1px solid black;
+      }
+
+      p {
+        font-size: 40px;
+        line-height: 60px;
+        letter-spacing: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>
+        <span id="hours">00</span>: <span id="minutes">00</span>:
+        <span id="seconds">00</span>
+      </p>
+    </div>
+  </body>
+  <script>
+
+
+    window.addEventListener("DOMContentLoaded", (e) => {
+        //  setInterval(timer, 1000);
+    });
+
+    var hour = 0;
+    var minute = 0;
+    var second = 0;
+
+    var hourVal = 0;
+    var minuteVal = 0;
+    var secondVal = 0;
+
+    function timer() {
+        secondVal = updateTime(second);
+        minuteVal = updateTime(minute);
+        hourVal = updateTime(hour);
+
+        second = ++second;
+
+        if (second == 60) {
+            minute += 1;
+            second = 0;
+        }
+
+        if (minute == 60) {
+            hour += 1;
+            minute = 0;
+        }
+
+        var secondView = document.getElementById('seconds');
+        secondView.innerText = secondVal;
+
+        var minuteView = document.getElementById('minutes');minuteView.innerText = minuteVal;
+
+        var hourView = document.getElementById('hours');
+        hourView.innerText = hourVal;
+    }
+
+    function updateTime(i) {
+        if (i < 10) {
+            i = "0" + i // 01 02 03 04
+        }
+        return i;
+    }
+  </script>
+</html>

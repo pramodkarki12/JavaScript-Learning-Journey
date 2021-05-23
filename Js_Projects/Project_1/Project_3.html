@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>CountDown Timer</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Roboto;
+        font-weight: 300;
+        background: linear-gradient(to left, #9ac8df, #ce05c0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .wrap {
+        display: inline-block;
+        min-width: 360px;
+        min-height: 400px;
+        padding: 50px 15px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 25px #0000004a;
+      }
+
+      p{
+          text-align: center;
+      }
+
+      #timer {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        line-height: 250px;
+        border-radius: 50%;
+        font-size: 40px;
+        margin: 0 auto;
+        background-color: #fff;
+      }
+
+      #timer svg {
+        position: absolute;
+        left: 0;
+      }
+
+      .btn-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .form {
+        margin-top: 20px;
+      }
+
+      .form > label {
+        float: left;
+        clear: right;
+      }
+
+      .form > input {
+        float: right;
+      }
+
+      label, input{
+          margin-top: 5px;
+      } 
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div id="timer">
+        <svg width="260" height="260">
+          <circle
+            class="defaultCircle"
+            cx="125"
+            cy="125"
+            r="120"
+            stroke="#ff88fb"
+            stroke-width="10"
+            fill="none"
+            stoke-linecap="round"
+          />
+        </svg>
+
+        <p>
+          <span id="hour">00</span>: <span id="minute">00</span>:
+          <span id="second">00</span>
+        </p>
+      </div>
+
+      <div class="btn-container">
+        <button type="submit" id="start" class="btn btn-dark" style="margin-left: 4px;" >Start Time</button>
+      </div>
+
+
+      <form>
+        <div class="form-row" style="margin-top: 20px;">
+          <div class="form-group col-md-4">
+            <label for="hourState">Hour</label>
+            <select id="hourState" class="form-control">
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="minuteState">Minute</label>
+            <select id="minuteState" class="form-control">
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="secondState">Second</label>
+            <select id="secondState" class="form-control">
+            </select>
+          </div>
+          
+        <button type="submit" id="setTime" class="btn btn-primary" style="margin-left: 4px;">Set Time</button>
+      </form>
+
+
+    </div>
+    
+  </body>
+  
+<script>
+    document.addEventListener('DOMContentLoaded', (e) => {
+        var hourtimes = document.querySelector('#hourState')
+        for(i = 0; i < 24; i++) {
+          var childEle = document.createElement('option');         
+          childEle.innerText = i;        
+          hourtimes.appendChild(childEle);
+        }
+
+        var minTimes = document.querySelector('#minuteState');
+        for(i = 0; i < 60; i++) {
+          var childEle = document.createElement('option');          
+          childEle.innerText = i;          
+          minTimes.appendChild(childEle);
+        } 
+
+        var secTimes = document.querySelector('#secondState');
+        for(i = 0; i < 60; i++) {
+          var childEle = document.createElement('option');
+          childEle.innerText = i;
+          secTimes.appendChild(childEle);
+          
+        setTimeOnUI();
+
+        
+
+
+      } 
+
+    });
+        
+    
+    function setTimeOnUI() {
+      $("button").click(function(e) {
+          e.preventDefault();
+          var hourVal = [];
+          var minVal = [];
+          var secVal = [];
+          $.each($("#hourState option:selected"), function() {
+              hourVal.push($(this).val());
+          });
+          $.each($("#minuteState option:selected"), function() {
+              minVal.push($(this).val());
+          });
+          $.each($("#secondState option:selected"), function() {
+              secVal.push($(this).val());
+          });
+
+          hourValue = parseInt(hourVal);
+          minuteValue = parseInt(minVal);
+          secondValue = parseInt(secVal);
+
+          hours = document.getElementById('hour');
+          mins = document.getElementById('minute');
+          secs = document.getElementById('second');
+
+          if (hourValue < 10) {
+            hours.innerHTML = `0${hourValue}`;
+          }
+
+          if (minuteValue < 10) {
+            mins.innerHTML = `0${minuteValue}`;
+          }
+
+          if (secondValue < 10) {
+            secs.innerHTML = `0${secondValue}`;
+          }
+
+          else {
+            hours.innerHTML = hourValue;
+            mins.innerHTML = minuteValue;
+            secs.innerHTML = secondValue;      
+          }
+
+          // countDownTime(hourValue, minuteValue, secondValue);
+      });
+    }
+
+
+    var hourVal = [];
+    var minVal = [];
+    var secVal = [];
+
+    var hValue = 0;
+    var mValue = 0;
+    var sValue = 0;
+
+    $.each($("#hourState option:selected"), function() {
+        hourVal.push($(this).val());
+    });
+    $.each($("#minuteState option:selected"), function() {
+        minVal.push($(this).val());
+    });
+    $.each($("#secondState option:selected"), function() {
+        secVal.push($(this).val());
+    });
+
+    function countDownTime(hour, minute, second) {
+      $('#start').click(function() {
+        // e.preventDefault();
+        base = setInterval(timer, 1000);
+      });
+    }
+
+    function timer() {
+        
+          hValue = updateTime(hourVal);
+          mValue = updateTime(minVal);
+          sValue = updateTime(secVal);
+
+          sValue = --sValue;
+          if (sValue == 0) {
+            mValue--;
+            sValue = 59
+          }
+
+          if (mValue == 0) {
+            hValue--;
+            mValue = 59;
+          }
+
+          if (hValue == 0) {
+            hValue = 0;          
+          }
+
+          // document.getElementById('hour').innerText = hValue;
+          // document.getElementById('minute').innerText = mValue;
+          // document.getElementById('second').innerText = sValue;
+
+          $("#second").text(hValue);
+          $("#minute").text(mValue);
+          $("#hour").text(sValue);
+
+    }
+
+    function updateTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+
+
+
+</script>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</html>
