@@ -1,0 +1,75 @@
+@import './resets';
+@import './variables';
+
+/*Function should used to compute the values and returns the values.*/
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+/* mixin should define styles.*/
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true) {
+  @if $light-theme {
+    background: lighten($primary-color, 100%);
+    color: darken($text-color, 100%);
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+body {
+  background-color: $primary-color;
+  color: #fff;
+  font-weight: map-get($font-weights, bold);
+}
+
+/*Nested Features*/
+.main {
+  @include flexCenter(row);
+  width: 100% - 40%;
+  margin: 0 auto;
+
+  /*  .main__paragraph {
+     font-weight: map-get($font-weights, regular);
+   }
+Other method
+
+Using '&'
+#{&}__paragraph {
+    font-weight: map-get($font-weights, regular);
+
+*/
+
+  #{&}__paragraph1 {
+    font-weight: weight(bold); //Using Function
+    &:hover {
+      text-transform: capitalize;
+      color: $text-color;
+    }
+  }
+
+  #{&}__paragraph2 {
+    @extend .main__paragraph1;
+    &:hover {
+      color: $accent-color;
+      text-transform: none;
+    }
+  }
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.light {
+  @include theme($light-theme: false);
+}
